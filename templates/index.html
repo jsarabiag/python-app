@@ -5,69 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor de Divisas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Nueva tipografía de Google Fonts (Estudiante B) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            /* Nuevo esquema de colores: degradado índigo y púrpura */
+            background: linear-gradient(135deg, #0f172a, #311042, #4f46e5);
+            font-family: 'Poppins', sans-serif;
+            color: #1e293b;
+            padding: 15px;
         }
         .converter-card {
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        h2 {
+            font-weight: 700;
+            color: #312e81;
+        }
+        .btn-custom {
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-custom:hover {
+            background: linear-gradient(90deg, #4338ca, #6d28d9);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(79, 70, 229, 0.3);
         }
         .result-box {
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #198754;
+            font-weight: 700;
+            color: #4f46e5;
+            background-color: #eef2ff;
+            padding: 12px;
+            border-radius: 12px;
+        }
+        /* Reglas para hacer la aplicación responsive en pantallas pequeñas */
+        @media (max-width: 576px) {
+            .converter-card {
+                padding: 1.5rem !important;
+                border-radius: 16px;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            .result-box {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
 
-<body class="d-flex justify-content-center align-items-center vh-100">
+<body class="d-flex justify-content-center align-items-center min-vh-100">
 
-    <div class="card shadow-lg p-4 converter-card" style="width: 400px;">
+    <div class="card shadow-lg p-4 converter-card">
         <h2 class="text-center mb-4">💱 Conversor de Divisas</h2>
 
         <form method="post">
             <div class="mb-3">
-                <label class="form-label">Cantidad</label>
+                <label class="form-label fw-semibold">Cantidad</label>
                 <input type="number" step="0.01" name="amount" 
                        class="form-control form-control-lg" 
                        placeholder="Introduce cantidad" required>
             </div>
 
-            <div class="row mb-3">
-                <div class="col">
+            <div class="row mb-3 g-2">
+                <div class="col-12 col-sm-5">
                     <select name="from_currency" class="form-select">
                         <option value="EUR">EUR €</option>
-                        <option value="USD">USD $</option>
-                        <option value="GBP">GBP £</option>
-                    </select>
-                </div>
-                <div class="col text-center align-self-center">
-                    →
-                </div>
-                <div class="col">
-                    <select name="to_currency" class="form-select">
-                        <option value="USD">USD $</option>
-                        <option value="EUR">EUR €</option>
-                        <option value="GBP">GBP £</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="d-grid">
-                <button type="submit" class="btn btn-primary btn-lg">
-                    Convertir
-                </button>
-            </div>
-        </form>
-
-        {% if result is not none %}
-            <div class="mt-4 text-center result-box">
-                {{ result }}
-            </div>
-        {% endif %}
-    </div>
-
-</body>
-</html>
